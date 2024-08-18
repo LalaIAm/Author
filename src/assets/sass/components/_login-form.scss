@@ -1,0 +1,139 @@
+.content-child {
+  width: 80rem;
+  height: 79rem;
+  position: absolute;
+  margin: 0 !important;
+  right: -28rem;
+  bottom: -6.5rem;
+  border-radius: 50%;
+  background-color: white;
+  z-index: 1;
+}
+
+.hello-stranger {
+  margin: 0;
+  align-self: stretch;
+  position: relative;
+  font-size: var(--title-size);
+  color: var(--primary);
+  text-align: center;
+}
+
+.email-input1,
+.welcome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.email-input1 {
+  align-self: stretch;
+  gap: var(--gap3xl);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  input {
+    margin-bottom: 8px;
+  }
+}
+
+.welcome {
+  margin: 0;
+  width: 26.5rem;
+  gap: var(--gap-44xl);
+  max-width: 100%;
+  z-index: 2;
+}
+
+.already-have-an,
+.log-in2 {
+  position: relative;
+  flex-shrink: 0;
+  z-index: 2;
+}
+
+.log-in2 {
+  line-height: 16px;
+  display: inline-block;
+  min-width: 2.875rem;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.login-link {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-end;
+  color: var(--primary);
+}
+
+.account,
+.content1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.account {
+  width: 11.5rem;
+  align-items: flex-start;
+  gap: var(--gap-3xs-3);
+}
+
+.content1 {
+  flex: 1;
+  align-items: flex-end;
+  padding: var(--padding-233xl) var(--padding-136xl) var(--padding-203xl);
+  box-sizing: border-box;
+  position: relative;
+  gap: var(--gap-28xl);
+  min-width: 34rem;
+  max-width: 100%;
+  margin-left: -2.25rem;
+  font-size: var(--link-size);
+  color: var(--color-gray-200);
+  font-family: var(--link);
+}
+
+.error {
+  position: fixed;
+  color: red;
+}
+
+@media screen and (max-width: 1050px) {
+  .content1 {
+    padding-bottom: var(--padding-125xl);
+    box-sizing: border-box;
+    min-width: 100%;
+    margin-left: 0;
+  }
+}
+@media screen and (max-width: 750px) {
+  .hello-stranger {
+    font-size: var(--font-size-10xl);
+  }
+  .content1 {
+    gap: var(--gap-4xl);
+    padding-left: var(--padding-58xl);
+    padding-right: var(--padding-58xl);
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 450px) {
+  .hello-stranger {
+    font-size: var(--font-size-3xl);
+  }
+  .welcome {
+    gap: var(--gap-12xl);
+  }
+  .content1 {
+    padding-left: var(--padding-xl);
+    padding-right: var(--padding-xl);
+    padding-bottom: var(--padding-75xl);
+    box-sizing: border-box;
+  }
+}

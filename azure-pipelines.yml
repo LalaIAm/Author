@@ -1,0 +1,63 @@
+# Node.js
+# Build a general Node.js project with npm.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+- master
+
+pool:
+  vmImage: windows-latest
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '20.x'
+  displayName: 'Install Node.js'
+
+- task: CacheBeta@1
+  inputs:
+    key: npm | $(Agent.OS) | package-lock.json 
+    path: /home/vsts/.npm
+    restoreKeys: npm | $(Agent.OS) | package-lock.json 
+  displayName: Cache NPM packages 
+  
+- task: CacheBeta@1
+  inputs:
+    key: cypress | $(Agent.OS) | package-lock.json 
+    path: /home/vsts/.cache/Cypress 
+    restoreKeys: cypress | $(Agent.OS) | package-lock.json 
+  displayName: Cache Cypress binary
+
+- script: npm install
+  displayName: 'install dependencies' 
+
+- script: npm run build 
+  displayName: Build 
+
+- script: npm run cy:verify 
+  displayName: Verify Cypress
+
+- script: |
+    set TESTOMATIO=$(testomatio) TESTOMATIO_RUN=$(run) npm run cy:ci --grep="$(grep)"
+  env:
+    TESTOMATIO: $(testomatio)
+    TESTOMATIO_RUN: $(run)
+    GREP: $(grep)
+  displayName: 'run tests'
+  
+- task: PublishTestResults@2 
+  displayName: 'Publish Test Results' 
+  inputs: 
+    testResultsFiles: 'test-results-*.xml'
+    searchFolder: 'results'
+    mergeTestResults: true 
+    failTaskOnFailedTests: true 
+  continueOnError: true 
+  condition: succeededOrFailed()
+  
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: 'dist'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'

@@ -1,0 +1,25 @@
+.text-input {
+  background: none;
+  border: 1.5px solid #000;
+  border-radius: 20px;
+  color: #00000060;
+  padding: 14px 26px;
+  width: 100%;
+  outline: none;
+
+  &::placeholder {
+    color: #00000060;
+  }
+
+  &:active, &:focus {
+    border: 1.5px solid $primary !important;
+    border-color: $primary;
+    color: #000;
+    background: #720d5c26;
+  }
+
+  &:valid {
+      border: 1.5px solid $primary !important;
+      color: #000;
+  }
+}
