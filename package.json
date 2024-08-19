@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview --port 3000",
     "cy:open": "cypress open",
-    "cy:run": "cypress run",
+    "cy:run": "cypress run -- --spec='cypress/e2e/features/*",
     "cy:ci": "start-server-and-test preview http://localhost:3000 cy:run",
     "cy:verify": "cypress verify",
     "cy:cu": "cypress run -- --spec='cypress/e2e/*"
