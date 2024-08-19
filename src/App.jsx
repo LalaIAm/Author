@@ -1,7 +1,7 @@
 import { AnimatePresence } from "framer-motion";
 import { useLocation, useRoutes } from "react-router-dom";
 import SignUp from "./pages/SignUp";
-import Login from "./pages/LogIn";
+import Login from "./pages/Login";
 import AuthWrapper from "./layouts/AuthWrapper";
 import React from "react";
 import Home from "./pages/Home";
