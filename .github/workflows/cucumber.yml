@@ -1,0 +1,49 @@
+name: Cypress Cucumber Tests
+
+on: 
+  push:
+    branches:
+      - main 
+  pull_request:
+
+jobs:
+  install:
+    runs-on: Ubuntu-latest 
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Cypress install
+        uses: cypress-io/github-action@v6
+        with:
+          # Disable running of tests within install job
+          runTests: false
+          build: npm run build
+
+      - name: Save build folder
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          if-no-files-found: error
+          path: dist
+
+  cypress-run:
+    permissions:
+      issues: write
+      pull-requests: write
+    runs-on: ubuntu-22.04
+    needs: install
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download the build folder
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
+
+      - name: Run tests 
+        run: TESTOMATIO=tstmt_mgR0DCCzphANSlLSEcCWXRoE5nm7NQpMUA1723879266 npm run cy:ci
+
+    
